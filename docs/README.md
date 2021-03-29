@@ -30,3 +30,6 @@ Ok: Push to the heroku stream:
 1. In your git repo path, do a `heroku create` then a `git push heroku main`
 
 2. Add the mongo database to your Heroku app, and verify there is a 'MONGODB_URI' configuration variable. 
+
+
+I will type here
