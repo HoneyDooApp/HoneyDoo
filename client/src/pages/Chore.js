@@ -45,7 +45,7 @@ function Tasks() {
       <form>
       <div class="card">
           <div class="card-header">
-              <h1>{name}'s HoneyDoo List</h1>
+              <h1>The{name}'s HoneyDoo List</h1>
           </div>
           <div  class="card-body">
               <ul id="taskList" class="list-group">
@@ -56,51 +56,25 @@ function Tasks() {
           <div class="card-footer">
             <div class="input-group">
               <input ref={inputRef} type="text" class="form-control" placeholder='Add New Chore...' /> 
-              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
+              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Create</button>
             </div>
             <div class="input-group">
               <input ref={inputRef} type="text" class="form-control" placeholder='Delegate Chore...' /> 
-              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Go To Chore</button>
+              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Edit</button>
             </div>
+
+            <div class="input-group">
+              <input ref={inputRef} type="text" class="form-control" placeholder='Delegate Chore...' /> 
+              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Delete</button>
+            </div>
+
+
           </div>
       </div>
 
-            {/* <div class="card-header">
-              <h1>{name}'s HoneyDoo List</h1>
-          </div>
-          <div  class="card-body">
-              <ul id="taskList" class="list-group">
-                {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name}</li> )}
-              </ul>
-          </div> */}
 
-          <div class="card-header">
-              <h1>{name}'s Delegated HoneyDoo List</h1>
-          </div>
-          <div  class="card-body">
-              <ul id="taskList" class="list-group">
-                {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name}</li> )}
-              </ul>
-          </div>
-
-          <div class="card-header">
-              <h1>{name}'s Household HoneyDoo List</h1>
-          </div>
-          <div  class="card-body">
-              <ul id="taskList" class="list-group">
-                {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name}</li> )}
-              </ul>
-          </div>
-
-          {/* <div class="card-footer">
-            <div class="input-group">
-              <input ref={inputRef} type="text" class="form-control" placeholder='New Task...' /> 
-              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
-            </div>
-          </div>
-      </div> */}
       </form>
   )
 }
 
-export default Tasks
+export default Chore
