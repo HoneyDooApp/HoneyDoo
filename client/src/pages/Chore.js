@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react"
 import { useStoreContext } from "../utils/GlobalStore"
 import fetchJSON from "../utils/API"
 
-function Tasks() {
+function Chore() {
   const [{ alert, tasks, name }, dispatch ]= useStoreContext()
 
   const inputRef = useRef()

@@ -12,6 +12,8 @@ import Login from "./pages/Login"
 import Logout from "./pages/Logout"
 import Chore from "./pages/Chore"
 
+import "./index.css"
+
 function App() {
   return (
     <StoreProvider>

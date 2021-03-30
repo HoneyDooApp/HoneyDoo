@@ -1,0 +1,68 @@
+
+/* NabBar */
+.card {
+    background-size: cover;
+      background-image: url("./Assets/signinImage.jpg");  
+    /* background-position: center;
+    background-clip: content-box; */
+    border: 6px solid white;
+    height: 400px;
+    width: 1400px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    position: relative;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 10px; 
+  }
+
+ h1 {
+     font-style: italic;
+ }
+
+   .navbar {
+    font-size: 30px;
+    font-weight: bold;
+   }
+
+   .bg-light {
+    background-color:#80ced6!important;
+        color: whitesmoke;
+    }
+
+    /* .logo {
+        height: 10px;
+    } */
+
+   body {
+     
+        background-image: url("./Assets/houseclieaning.jpg"); 
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+   }
+   
+   /* tasks */
+
+   .card-body {
+    background-size: cover;
+    background-image: url("./Assets/signinImage.jpg");  
+    background-position: center;
+    background-clip: content-box; 
+    border: 6px solid white;
+    font-weight: bolder;
+    height: 400px;
+    width: 1400px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    position: relative;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 10px; 
+   }
+ 
+.card-footer {
+    font-weight: 900; 
+}
+   .footer {
+       font-weight: bolder;
+       font-size: 200px;
+   }
