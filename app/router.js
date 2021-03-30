@@ -19,6 +19,7 @@ async function authRequired(req, res, next){
 function router( app ){
    app.post('/api/users/register', async function(req, res) {
       console.log( '[POST /api/users/register] request body:', req.body )
+      console.log('[POST] household name', req.body.householdName)
       const { status, userData, message }= await orm.userRegister( req.body )
       if( !status ){
          res.status(403).send({ status, message }); return

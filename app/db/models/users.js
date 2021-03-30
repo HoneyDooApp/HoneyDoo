@@ -6,7 +6,8 @@ let users = new Schema ({
    email:  { type: String, trim: true,
       match: [/.+@.+\..+/, 'Please enter a valid e-mail address'] },
    thumbnail: { type: String, trim: true },
-   password:  { type: String, trim: true }
+   password:  { type: String, trim: true },
+   householdid:{type:mongoose.Schema.Types.ObjectId}
 }, {
    timestamps: true /* creates corresponding timestamp fields: createdAt, updatedAt */
 })

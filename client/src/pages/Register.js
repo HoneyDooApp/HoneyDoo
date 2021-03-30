@@ -9,6 +9,9 @@ function Register(){
     const inputEmail = useRef()
     const inputPassword = useRef()
     const inputName = useRef()
+    const inputHName = useRef()
+    const hofName = useRef()
+    const inputRole = useRef()
     const refForm = useRef()
 
     async function registerUser( e ){
@@ -23,7 +26,10 @@ function Register(){
         const regData = {
             name: inputName.current.value.trim(),
             email: inputEmail.current.value.trim(),
-            password: inputPassword.current.value.trim()
+            password: inputPassword.current.value.trim(),
+            householdName: inputHName.current.value.trim(),
+            headFamily: hofName.current.value.trim(),
+            role: inputRole.current.value.trim()
         }
 
         // just to make sure the browser validation worked, we double-check
@@ -80,6 +86,27 @@ function Register(){
                         <input ref={inputPassword} id="userPassword" type="password" class="form-control"  pattern=".{8,}" required />
                         <div class="invalid-feedback">
                             Please enter a password (8 chars min)
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="text">Household Name</label>
+                        <input ref={inputHName} id="householdName" type="text" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please enter your Household Name
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="text">Head of Family</label>
+                        <input ref={hofName} id="hofName" type="text" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please enter your Head of Family name
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="text">Role</label>
+                        <input ref={inputRole} id="rol" type="text" class="form-control" required />
+                        <div class="invalid-feedback">
+                            Please enter your role
                         </div>
                     </div>
                 </div>
