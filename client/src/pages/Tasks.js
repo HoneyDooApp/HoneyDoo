@@ -40,12 +40,12 @@ function Tasks() {
   async function tasksDel( e ){
     e.preventDefault()
     const id = e.target.id
-    console.log ('delete id'.id)  
+    console.log ('deleteid',id)  
     const newTask = inputRef.current.value
     // clear input
     inputRef.current.value = ''
 
-    const { status, message }= await fetchJSON( `/api/tasks/${id}`, 'delete', )
+    const { status, message }= await fetchJSON( `/api/tasks/${id}`, 'delete' )
     if( !status ){
       dispatch({ type: "ALERT_MESSAGE", message })
       return

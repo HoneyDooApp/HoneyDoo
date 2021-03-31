@@ -74,13 +74,15 @@ function router( app ){
       res.send({ status, tasks, message })
    })
 
-   
+   ///
    app.delete('/api/tasks/:id', authRequired, async function(req, res) {
       const id = req.params.id
       console.log ('deletingid', id)
-      const { status, tasks, message }= await orm.taskList( req.sessionData.userId )
-      console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
-      res.send({ status, tasks, message })
+      const { status, message }= await orm.tasksDel(id)
+      //console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
+      res.send({ status, message })
+      //req.method="GET"
+      //res.redirect('/tasks')
    })
 }
 

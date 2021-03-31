@@ -1,6 +1,6 @@
 const mongoose = require( 'mongoose' )
 const bcrypt = require( 'bcrypt' )
-
+const mongodb = require( 'mongodb')
 mongoose.connect(process.env.MONGODB_URI,
    {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false})
 
@@ -110,10 +110,9 @@ async function taskSaveAndList( newTask, ownerId ){
 
    
 }
-// Added function to button
-async function tasksDel( newTask, ownerId ) {
-   return taskList( ownerId, 'Task deleted' )
-   const result = await db.tasks.create({ name: newTask, ownerId })
+// Added function to X button
+async function tasksDel( id ) {
+   const result = await db.tasks.deleteOne({_id: new mongodb.ObjectID(`${id}`)})
    if( !result._id ){
       return {
          status: false,
