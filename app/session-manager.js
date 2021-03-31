@@ -12,9 +12,10 @@ function verifyAndLoad( requestSession ){
    return ( sessionMatch.length!==1 ? false : sessionMatch[0] )
 }
 
-function create( userId ){
+function create( userData ){
+   console.log('USerData',userData)
    session = uuid.v4()
-   userSessions.push( { session, userId } )
+   userSessions.push( { session, userData } )
    return session
 }
 
