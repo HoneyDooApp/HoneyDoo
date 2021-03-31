@@ -19,6 +19,7 @@ async function authRequired(req, res, next){
 function router( app ){
    app.post('/api/users/register', async function(req, res) {
       console.log( '[POST /api/users/register] request body:', req.body )
+      console.log('[POST] household name', req.body.householdName)
       const { status, userData, message }= await orm.userRegister( req.body )
       if( !status ){
          res.status(403).send({ status, message }); return
@@ -30,6 +31,11 @@ function router( app ){
 
       res.send({ status, session, userData, message })
    })
+   app.post('/api/users/register/new', async function(req, res) {
+      console.log( '[POST /api/users/register/new] request body:', req.body )
+      const { status, userData, message }= await orm.newRegister( req.body )
+      console.log(userData)
+   })
 
    app.post('/api/users/login', async function(req, res) {
       console.log( '[POST /api/users/login] req.body:', req.body )
@@ -39,14 +45,15 @@ function router( app ){
       }
 
       // generate a session-key
-      const session = sessionManager.create( userData.id )
+      const session = sessionManager.create( userData )
+      console.log('UserData', userData)
       // console.log( `.. login complete! session: ${session}` )
       res.send({ status, session, userData, message })
    })
 
    // all these endpoints require VALID session info
    app.get('/api/users/session', authRequired, async function(req, res) {
-      const { status, userData, message }= await orm.userSession( req.sessionData.userId )
+      const { status, userData, message }= await orm.userSession( req.sessionData.userData.householdid )
       if( !status ){
          res.status(403).send({ status, message }); return
       }
@@ -62,15 +69,16 @@ function router( app ){
    })
 
    app.get('/api/tasks', authRequired, async function(req, res) {
-      const { status, tasks, message }= await orm.taskList( req.sessionData.userId )
-      console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
+      console.log('Session Data',req.sessionData)
+      const { status, tasks, message }= await orm.taskList( req.sessionData.userData.householdid )
+      console.log( ` .. got ${tasks.length} tasks for household id(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
 
    app.post('/api/tasks', authRequired, async function(req, res) {
       const newTask = req.body.task
-      const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userId )
-      console.log( ` .. updated with '${newTask}' for ownerId(${req.sessionData.userId})` )
+      const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userData.householdid )
+      console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
 }

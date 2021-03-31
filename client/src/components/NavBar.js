@@ -58,11 +58,14 @@ function NavBar() {
           <div className={`collapse navbar-collapse `+(showMenu ? 'show' : '')} id="navbar">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <NavLink to="/tasks" className="nav-link" activeClassName="active">HoneyDoo</NavLink>
-              </li>          
+                <NavLink to="/tasks" className="nav-link" activeClassName="active">Tasks</NavLink>
+              </li> 
+              <li className="nav-item">
+                <NavLink to="/register/new" className="nav-link">New User</NavLink>
+              </li>  
               <li className="nav-item">
                 <NavLink to="/Chore" className="nav-link" activeClassName="active">Chore</NavLink>
-              </li>          
+              </li>             
               <li className="nav-item">
                 <NavLink to="/logout" className="nav-link">Logout</NavLink>
               </li> 

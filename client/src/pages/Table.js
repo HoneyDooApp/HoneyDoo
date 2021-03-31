@@ -28,17 +28,21 @@ function Table() {
 
 
       const [choreName,setChoreName]=useState('')
+      let [form,setForm]=useState({})
       const handleChange=(e)=>{
          console.log("click")
-         const option =e.target.value
-         setChoreName(choreName=>"")
-         setChoreName(choreName=>choreName+option)
+         const {id,value} =e.target
+         setForm({ ...form, [id]: value })
+         form = { ...form, [id]: value }
+         setChoreName(`${form.action||'-'} ${form.area||'-'} ${form.subject||'-'} `)
+         // setChoreName(choreName=>"")
+         // setChoreName(choreName=>choreName+option)
          // setChoreName(choreName=>"")
          
       }
    return (
       <form className="form1 left">
-        <h1>Mjoc's Chore List</h1>
+         <h1>Create or Edit a Chore</h1>
         <div className="left form">
             <label  for="choreName">choreName </label>
              <input value={choreName} type="text"/>
@@ -46,7 +50,7 @@ function Table() {
             <input type="text"/>
         <br></br>
             <label for="action">Action </label>
-            <select onClick={e=>handleChange(e)} class="form-select" aria-label="Default select example">
+            <select onClick={e=>handleChange(e)} class="form-select" id="action" aria-label="Default select example">
                 {actionOps.map(action=>{
                   return( <option  value={action.name}>{action.name}</option>)
                 })}
@@ -54,7 +58,7 @@ function Table() {
             <br></br>
 
             <label for="area">Area/Location </label>
-            <select onClick={e=>handleChange(e)} class="form-select" aria-label="Default select example">
+            <select onClick={e=>handleChange(e)} class="form-select" id="area" aria-label="Default select example">
                 {areaOps.map(area=>{
                   return( <option  value={area.name}>{area.name}</option>)
                 })}
@@ -62,7 +66,7 @@ function Table() {
             <br></br>
             
             <label for="subject">Subject </label>
-            <select onClick={e=>handleChange(e)} class="form-select" aria-label="Default select example">
+            <select onClick={e=>handleChange(e)} class="form-select" id="subject" aria-label="Default select example">
                 {subjectOps.map(subject=>{
                   return( <option  value={subject.name}>{subject.name}</option>)
                 })}
@@ -70,7 +74,7 @@ function Table() {
             <br></br>
             
             <label for="purpose">Purpose </label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="purpose" aria-label="Default select example">
                 <option value="1">Hygiene</option>
                 <option value="2">Duty</option>
                 <option value="3">Dependency</option>
@@ -79,21 +83,21 @@ function Table() {
             </select>
             <br></br>
             <label for="effort">Effort </label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="effort" aria-label="Default select example">
                 <option value="1">High</option>
                 <option value="2">Medium</option>
                 <option value="3">Low</option>
             </select>
         <br></br>
             <label for="age">Age Appropriate </label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="age" aria-label="Default select example">
                 <option value="1">All Ages</option>
                 <option value="2">Over 7</option>
                 <option value="3">Over 18</option>
             </select>
         <br></br>
             <label for="consequence">Consequence </label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="consequence"aria-label="Default select example">
                 <option value="1">High</option>
                 <option value="2">Medium</option>
                 <option value="3">Low</option>
@@ -103,14 +107,14 @@ function Table() {
             <input type="text"/>
         <br></br>
         <label>Help Required</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="help"aria-label="Default select example">
                 <option selected>Yes/No</option>
                 <option value="1">Yes</option>
                 <option value="2">No</option>
             </select>
         <br></br>
         <label>Recurring</label>
-        <select class="form-select" aria-label="Default select example">
+        <select class="form-select" id="recurring" aria-label="Default select example">
                 <option value="1">Daily</option>
                 <option value="2">Weekly</option>
                 <option value="3">Monthly</option>
@@ -119,7 +123,7 @@ function Table() {
             </select>
             <br></br>
             <label>Status</label>
-            <select class="form-select" aria-label="Default select example">
+            <select class="form-select" id="status" aria-label="Default select example">
                 <option value="1">Incomplete</option>
                 <option value="2">Complete</option>
             </select>
@@ -134,7 +138,7 @@ function Table() {
         <br></br>
             <div className="form3">
             <label for="specialInstructions">Special Instructions and Help Required:</label>
-            <textarea>
+           <textarea id="specialinstructions">
             </textarea>
         </div>
       </form>
