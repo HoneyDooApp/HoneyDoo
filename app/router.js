@@ -31,6 +31,11 @@ function router( app ){
 
       res.send({ status, session, userData, message })
    })
+   app.post('/api/users/register/new', async function(req, res) {
+      console.log( '[POST /api/users/register/new] request body:', req.body )
+      const { status, userData, message }= await orm.newRegister( req.body )
+      console.log(userData)
+   })
 
    app.post('/api/users/login', async function(req, res) {
       console.log( '[POST /api/users/login] req.body:', req.body )
