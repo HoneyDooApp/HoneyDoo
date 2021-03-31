@@ -73,6 +73,15 @@ function router( app ){
       console.log( ` .. updated with '${newTask}' for ownerId(${req.sessionData.userId})` )
       res.send({ status, tasks, message })
    })
+
+   
+   app.delete('/api/tasks/:id', authRequired, async function(req, res) {
+      const id = req.params.id
+      console.log ('deletingid', id)
+      const { status, tasks, message }= await orm.taskList( req.sessionData.userId )
+      console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
+      res.send({ status, tasks, message })
+   })
 }
 
 module.exports = router

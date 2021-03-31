@@ -108,7 +108,18 @@ async function taskSaveAndList( newTask, ownerId ){
       }
    }
 
-   return taskList( ownerId, 'Task saved' )
+   
+}
+// Added function to button
+async function tasksDel( newTask, ownerId ) {
+   return taskList( ownerId, 'Task deleted' )
+   const result = await db.tasks.create({ name: newTask, ownerId })
+   if( !result._id ){
+      return {
+         status: false,
+         message: 'Sorry could not remove task!'
+      }
+   }
 }
 
 module.exports = {
@@ -116,5 +127,6 @@ module.exports = {
    userLogin,
    userSession,
    taskList,
-   taskSaveAndList
+   taskSaveAndList,
+   tasksDel
 };
