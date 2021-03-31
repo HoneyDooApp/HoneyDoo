@@ -23,7 +23,7 @@ async function userRegister(userData) {
 
    // hash the password (salt=10)
    const passwordHash = await bcrypt.hash(userData.password, 10)
-   const passwordHash2 = await bcrypt.hash(userData.password2, 10)
+   // const passwordHash2 = await bcrypt.hash(userData.password2, 10)
    const saveData = {
       name: userData.name,
       email: userData.email || '',
@@ -31,16 +31,16 @@ async function userRegister(userData) {
       password: passwordHash,
       householdid: household._id
    }
-   const saveData2={
-      name:userData.name2,
-      email:userData.email2,
-      password:passwordHash2,
-      householdid:household._id
-   }
+   // const saveData2={
+   //    name:userData.name2,
+   //    email:userData.email2,
+   //    password:passwordHash2,
+   //    householdid:household._id
+   // }
    const saveUser = await db.users.create(saveData)
-   const saveUser2 = await db.users.create(saveData2)
+   // const saveUser2 = await db.users.create(saveData2)
    console.log(saveUser)
-   console.log(saveUser2)
+   // console.log(saveUser2)
    if (!saveUser._id) {
       return { status: false, message: `Sorry failed creating entry for ${saveUser.name}: ` }
    }
@@ -75,12 +75,7 @@ async function userLogin(email, password) {
    return {
       status: true,
       message: `Logging in ${userData.name}...`,
-      userData: {
-         id: userData.householdid,
-         name: userData.name,
-         email: userData.email,
-         thumbnail: userData.thumbnail
-      }
+      userData
    }
 }
 
@@ -101,9 +96,9 @@ async function userSession(userId) {
    }
 }
 
-async function taskList(ownerId, message = '') {
+async function taskList(householdid, message = '') {
    // refuse duplicate user emails
-   const tasks = await db.tasks.find({ ownerId }, '-ownerId -__v')
+   const tasks = await db.tasks.find({ householdid }, '-ownerId -__v')
 
    return {
       status: true,
@@ -112,9 +107,9 @@ async function taskList(ownerId, message = '') {
    }
 }
 
-async function taskSaveAndList(newTask, ownerId) {
+async function taskSaveAndList(newTask, householdid) {
    // refuse duplicate user emails
-   const result = await db.tasks.create({ name: newTask, ownerId })
+   const result = await db.tasks.create({ name: newTask, householdid })
    if (!result._id) {
       return {
          status: false,
@@ -122,7 +117,7 @@ async function taskSaveAndList(newTask, ownerId) {
       }
    }
 
-   return taskList(ownerId, 'Task saved')
+   return taskList(householdid, 'Task saved')
 }
 
 module.exports = {

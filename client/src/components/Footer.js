@@ -5,7 +5,7 @@ function Footer(){
         <>  
             <hr />
             <div id="footer-padding"></div>
-            <div id="footer">(c) 202x Project#3 Team</div>
+            <div id="footer">(c) 2021 HoneyDoo</div>
         </>
     )
 }

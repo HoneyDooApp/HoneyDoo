@@ -13,12 +13,12 @@ function Register(){
     const hofName = useRef()
     const inputRole = useRef()
     const refForm = useRef()
-    const inputName2 = useRef()
-    const inputEmail2 = useRef()
-    const inputPassword2 = useRef()
-    const inputHName2 = useRef()
-    const hofName2 = useRef()
-    const inputRole2 = useRef()
+    // const inputName2 = useRef()
+    // const inputEmail2 = useRef()
+    // const inputPassword2 = useRef()
+    // const inputHName2 = useRef()
+    // const hofName2 = useRef()
+    // const inputRole2 = useRef()
 
     async function registerUser( e ){
         e.preventDefault()
@@ -36,10 +36,10 @@ function Register(){
             householdName: inputHName.current.value.trim(),
             headFamily: hofName.current.value.trim(),
             role: inputRole.current.value.trim(),
-            name2: inputName2.current.value.trim(),
-            email2: inputEmail2.current.value.trim(),
-            password2: inputPassword2.current.value.trim(),
-            role2: inputRole2.current.value.trim()
+            // name2: inputName2.current.value.trim(),
+            // email2: inputEmail2.current.value.trim(),
+            // password2: inputPassword2.current.value.trim(),
+            // role2: inputRole2.current.value.trim()
         }
        
 
@@ -121,7 +121,7 @@ function Register(){
                             Please enter your role
                         </div>
                     </div>
-                    <div class="mb-3">
+                    {/* <div class="mb-3">
                         <label for="name">First Name</label>
                         <input ref={inputName2} type="text" id="name" class="form-control" required />
                         <div class="invalid-feedback">
@@ -163,7 +163,7 @@ function Register(){
                         <div class="invalid-feedback">
                             Please enter your role
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div class="card-footer">
                     <button onClick={registerUser} class="btn btn-primary mx-1" >Register</button>

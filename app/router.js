@@ -40,14 +40,15 @@ function router( app ){
       }
 
       // generate a session-key
-      const session = sessionManager.create( userData.id )
+      const session = sessionManager.create( userData )
+      console.log('UserData', userData)
       // console.log( `.. login complete! session: ${session}` )
       res.send({ status, session, userData, message })
    })
 
    // all these endpoints require VALID session info
    app.get('/api/users/session', authRequired, async function(req, res) {
-      const { status, userData, message }= await orm.userSession( req.sessionData.userId )
+      const { status, userData, message }= await orm.userSession( req.sessionData.userData.householdid )
       if( !status ){
          res.status(403).send({ status, message }); return
       }
@@ -63,15 +64,16 @@ function router( app ){
    })
 
    app.get('/api/tasks', authRequired, async function(req, res) {
-      const { status, tasks, message }= await orm.taskList( req.sessionData.userId )
-      console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
+      console.log('Session Data',req.sessionData)
+      const { status, tasks, message }= await orm.taskList( req.sessionData.userData.householdid )
+      console.log( ` .. got ${tasks.length} tasks for household id(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
 
    app.post('/api/tasks', authRequired, async function(req, res) {
       const newTask = req.body.task
-      const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userId )
-      console.log( ` .. updated with '${newTask}' for ownerId(${req.sessionData.userId})` )
+      const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userData.householdid )
+      console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
 }
