@@ -55,12 +55,12 @@ function Tasks() {
 
           <div class="card-footer">
             <div class="input-group">
-              <input ref={inputRef} type="text" class="form-control" placeholder='Add New Chore...' /> 
-              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
+              {/* <input ref={inputRef} type="text" class="form-control" placeholder='Add New Chore...' />  */}
+              {/* <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button> */}
             </div>
             <div class="input-group">
-              <input ref={inputRef} type="text" class="form-control" placeholder='Delegate Chore...' /> 
-              <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Go To Chore</button>
+              {/* <input ref={inputRef} type="text" class="form-control" placeholder='Delegate Chore...' />  */}
+              {/* <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Go To Chore</button> */}
             </div>
           </div>
       </div>

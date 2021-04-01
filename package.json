@@ -17,10 +17,12 @@
   "author": "Filipe Laborde",
   "license": "MIT",
   "dependencies": {
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "bcrypt": "^4.0.1",
+    "moment-range": "^4.0.2",
     "mongoose": "^5.9.26",
+    "react-input-calendar": "^0.5.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
