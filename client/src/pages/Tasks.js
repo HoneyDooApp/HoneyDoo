@@ -38,7 +38,24 @@ function Tasks() {
 
     dispatch({ type: "UPDATE_TASKS", tasks: newTasks, message })
   }
-  console.log('Post task',tasks)
+
+  //ADDED THIS BUTTON
+  async function tasksDel( e ){
+    e.preventDefault()
+    const id = e.target.id
+    console.log ('deleteid',id)  
+    const newTask = inputRef.current.value
+    // clear input
+    inputRef.current.value = ''
+
+    const { status, message }= await fetchJSON( `/api/tasks/${id}`, 'delete' )
+    if( !status ){
+      dispatch({ type: "ALERT_MESSAGE", message })
+      return
+    }
+
+    dispatch({ type: "REMOVE_POST", id , message })
+  }
   // on load get the list
   useEffect( function(){
     tasksLoad()
@@ -52,13 +69,14 @@ function Tasks() {
           </div>
           <div  class="card-body">
               <ul id="taskList" class="list-group">
-                {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name}</li> )}
+              {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name} 
+               <button onClick={tasksDel} disabled={alert.length>0} class="btn btn-primary float-end " id={task._id}>x</button></li> )}
               </ul>
           </div>
 
           <div class="card-footer">
             <div class="input-group">
-              <input ref={inputRef} type="text" class="form-control" placeholder='New Task...' /> 
+              <input ref={inputRef} type="text" class="form-control" placeholder='Remove Task...' /> 
               <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
               
             </div>

@@ -86,6 +86,17 @@ function router( app ){
       console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
+
+   ///
+   app.delete('/api/tasks/:id', authRequired, async function(req, res) {
+      const id = req.params.id
+      console.log ('deletingid', id)
+      const { status, message }= await orm.tasksDel(id)
+      //console.log( ` .. got ${tasks.length} tasks for ownerId(${req.sessionData.userId})` )
+      res.send({ status, message })
+      //req.method="GET"
+      //res.redirect('/tasks')
+   })
 }
 
 module.exports = router

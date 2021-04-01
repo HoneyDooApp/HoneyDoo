@@ -1,3 +1,4 @@
+
 /*
     note how we wrap our api fetch in this function that allows us to do some
     additional error / message handling for all API calls...
@@ -16,6 +17,12 @@ function fetchJSON( url, method='get', data={} ){
     if( method === 'post' || method === 'put' ) {
         fetchOptions.body = JSON.stringify( data )
     }
+
+    // Adding delete
+    //if( method === 'put' || method === 'post' ) {
+    //fetchOptions.body = JSON.stringify( data )
+   // }
+    
   
     return fetch( url,fetchOptions ).then( res=>res.json() )
 }
