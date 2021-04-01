@@ -19,14 +19,17 @@ function Tasks() {
     console.log( `.. GET /api/tasks, tasks:`, newTasks )
     dispatch({ type: "UPDATE_TASKS", tasks: newTasks })
   }
+  // async function deleteTask(e){
+  //   e.preventDefault()
 
+  // }
   async function tasksSave( e ){
     e.preventDefault()
     
     const newTask = inputRef.current.value
     // clear input
     inputRef.current.value = ''
-
+    
     const { status, tasks: newTasks, message }= await fetchJSON( '/api/tasks', 'post', { task: newTask } )
     if( !status ){
       dispatch({ type: "ALERT_MESSAGE", message })
@@ -35,7 +38,7 @@ function Tasks() {
 
     dispatch({ type: "UPDATE_TASKS", tasks: newTasks, message })
   }
-
+  console.log('Post task',tasks)
   // on load get the list
   useEffect( function(){
     tasksLoad()
@@ -57,6 +60,7 @@ function Tasks() {
             <div class="input-group">
               <input ref={inputRef} type="text" class="form-control" placeholder='New Task...' /> 
               <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
+              
             </div>
           </div>
       </div>

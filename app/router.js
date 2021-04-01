@@ -21,6 +21,7 @@ function router( app ){
       console.log( '[POST /api/users/register] request body:', req.body )
       console.log('[POST] household name', req.body.householdName)
       const { status, userData, message }= await orm.userRegister( req.body )
+      console.log('User Data from register Server',userData)
       if( !status ){
          res.status(403).send({ status, message }); return
       }
@@ -34,7 +35,10 @@ function router( app ){
    app.post('/api/users/register/new', async function(req, res) {
       console.log( '[POST /api/users/register/new] request body:', req.body )
       const { status, userData, message }= await orm.newRegister( req.body )
-      console.log(userData)
+      console.log('UserData from server New User',userData)
+      if( !status ){
+         res.status(403).send({ status, message }); return
+      }
    })
 
    app.post('/api/users/login', async function(req, res) {
@@ -46,7 +50,7 @@ function router( app ){
 
       // generate a session-key
       const session = sessionManager.create( userData )
-      console.log('UserData', userData)
+      console.log('UserData from session', userData)
       // console.log( `.. login complete! session: ${session}` )
       res.send({ status, session, userData, message })
    })
@@ -77,6 +81,7 @@ function router( app ){
 
    app.post('/api/tasks', authRequired, async function(req, res) {
       const newTask = req.body.task
+      console.log('New Task',req.body)
       const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userData.householdid )
       console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })

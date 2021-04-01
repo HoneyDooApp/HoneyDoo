@@ -64,7 +64,7 @@ function NewUser(){
     return (
         <>
            
-            <form ref={refForm}>
+            <form ref={refForm} onSubmit={<Redirect to='/tasks'/>}>
             <div class="card mt-5">
                 <div class="card-header">
                     <h1>User Registration</h1>
@@ -121,6 +121,7 @@ function NewUser(){
                 </div>
             </div>
             </form>
+            
         </>
     )
 }

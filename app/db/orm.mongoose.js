@@ -7,9 +7,11 @@ mongoose.connect(process.env.MONGODB_URI,
 // include mongoose models (it will include each file in the models directory)
 const db = require('./models')
 async function newRegister(userData){
-   //userData household name haz un call a household collection y busca el name para que te regrese el id y con ese id 
-}
-async function userRegister(userData) {
+   //userData household name haz un call a household collection y busca el name para que te regrese el id y con ese id
+   let household = await db.household.findOne({name:userData.householdName})
+   console.log('Household name:',userData.householdName)
+   console.log('household entero:',household)
+
    if (!userData.name || !userData.email || !userData.password) {
       console.log('[registerUser] invalid userData! ', userData)
       return { status: false, message: 'Invalid user data' }
@@ -20,12 +22,8 @@ async function userRegister(userData) {
    if (duplicateUser && duplicateUser._id) {
       return { status: false, message: 'Duplicate email, try another or login' }
    }
-   const household = await db.household.create({ name: userData.householdName })
-   console.log(household)
-
-   // hash the password (salt=10)
    const passwordHash = await bcrypt.hash(userData.password, 10)
-   const passwordHash2 = await bcrypt.hash(userData.password2, 10)
+
    const saveData = {
       name: userData.name,
       email: userData.email || '',
@@ -33,16 +31,10 @@ async function userRegister(userData) {
       password: passwordHash,
       householdid: household._id
    }
-   const saveData2={
-      name:userData.name2,
-      email:userData.email2,
-      password:passwordHash2,
-      householdid:saveData.householdid
-   }
    const saveUser = await db.users.create(saveData)
-   const saveUser2 = await db.users.create(saveData2)
-   console.log(saveUser)
-   console.log(saveUser2)
+
+   console.log('SaveUser', saveUser)
+
    if (!saveUser._id) {
       return { status: false, message: `Sorry failed creating entry for ${saveUser.name}: ` }
    }
@@ -55,7 +47,60 @@ async function userRegister(userData) {
          name: saveUser.name,
          email: saveUser.email,
          thumbnail: saveUser.thumbnail,
-         householdid: saveUser._id
+         householdid: saveUser.householdid
+      }
+   }
+}
+async function userRegister(userData) {
+   if (!userData.name || !userData.email || !userData.password) {
+      console.log('[registerUser] invalid userData! ', userData)
+      return { status: false, message: 'Invalid user data' }
+   }
+
+   // refuse duplicate user emails
+   let duplicateUser = await db.users.findOne({ email: userData.email })
+   if (duplicateUser && duplicateUser._id) {
+      return { status: false, message: 'Duplicate email, try another or login' }
+   }
+   let household = await db.household.findOne({name:userData.householdName})
+   console.log('Household name:',userData.householdName)
+   console.log('household entero:',household)
+   household = await db.household.create({ name: userData.householdName })
+   console.log('Household:',household)
+
+   // hash the password (salt=10)
+   const passwordHash = await bcrypt.hash(userData.password, 10)
+   // const passwordHash2 = await bcrypt.hash(userData.password2, 10)
+   const saveData = {
+      name: userData.name,
+      email: userData.email || '',
+      thumbnail: userData.thumbnail || '',
+      password: passwordHash,
+      householdid: household._id
+   }
+   // const saveData2={
+   //    name:userData.name2,
+   //    email:userData.email2,
+   //    password:passwordHash2,
+   //    householdid:saveData.householdid
+   // }
+   const saveUser = await db.users.create(saveData)
+   // const saveUser2 = await db.users.create(saveData2)
+   console.log('SAVE User',saveUser)
+   // console.log(saveUser2)
+   if (!saveUser._id) {
+      return { status: false, message: `Sorry failed creating entry for ${saveUser.name}: ` }
+   }
+
+   return {
+      status: true,
+      message: `Success! ${saveUser.name} was successfully registered`,
+      userData: {
+         id: saveUser._id,
+         name: saveUser.name,
+         email: saveUser.email,
+         thumbnail: saveUser.thumbnail,
+         householdid: saveUser.householdid
       }
    }
 }
@@ -127,5 +172,6 @@ module.exports = {
    userLogin,
    userSession,
    taskList,
-   taskSaveAndList
+   taskSaveAndList,
+   newRegister
 };
