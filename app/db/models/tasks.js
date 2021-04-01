@@ -3,7 +3,8 @@ const Schema = mongoose.Schema
 
 const tasks = new Schema({
    name: { type: String, required: true, trim: true },
-   ownerId: Schema.Types.ObjectId
+   ownerId: Schema.Types.ObjectId,
+   householdid: Schema.Types.ObjectId
 }, {
    timestamps: true /* creates corresponding timestamp fields: createdAt, updatedAt */
 })
