@@ -7,7 +7,7 @@ mongoose.connect(process.env.MONGODB_URI,
 // include mongoose models (it will include each file in the models directory)
 const db = require('./models')
 async function newRegister(userData){
-   //userData household name haz un call a household collection y busca el name para que te regrese el id y con ese id 
+   //userData household name haz un call a household collection y busca el name para que te regrese el id y con ese id
 }
 async function userRegister(userData) {
    if (!userData.name || !userData.email || !userData.password) {
@@ -119,7 +119,7 @@ async function taskSaveAndList(newTask, householdid) {
       }
    }
 
-   
+
 }
 // Added function to X button
 async function tasksDel( id ) {
