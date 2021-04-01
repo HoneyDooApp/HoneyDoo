@@ -19,9 +19,9 @@ function fetchJSON( url, method='get', data={} ){
     }
 
     // Adding delete
-    if( method === 'put' || method === 'post' ) {
-      fetchOptions.body = JSON.stringify( data )
-    }
+    //if( method === 'put' || method === 'post' ) {
+    //fetchOptions.body = JSON.stringify( data )
+   // }
     
   
     return fetch( url,fetchOptions ).then( res=>res.json() )
