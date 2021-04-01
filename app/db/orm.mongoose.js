@@ -119,6 +119,17 @@ async function taskSaveAndList(newTask, householdid) {
       }
    }
 
+   
+}
+// Added function to X button
+async function tasksDel( id ) {
+   const result = await db.tasks.deleteOne({_id: new mongodb.ObjectID(`${id}`)})
+   if( !result._id ){
+      return {
+         status: false,
+         message: 'Sorry could not remove task!'
+      }
+   }
    return taskList(householdid, 'Task saved')
 }
 
@@ -127,5 +138,6 @@ module.exports = {
    userLogin,
    userSession,
    taskList,
-   taskSaveAndList
+   taskSaveAndList,
+   tasksDel
 };
