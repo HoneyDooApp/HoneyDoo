@@ -21,7 +21,10 @@ const dataReducer = (state, action) => {
       return { ...state, alert: '' }
     case "UPDATE_TASKS":
       return { ...state, tasks: action.tasks, alert: action.message || '' }
-    default:
+    case "REMOVE_POST":
+      return { ...state, tasks: action.tasks, alert: action.message || '' }
+  
+      //default:
       console.log(`Invalid action type: ${action.type}`)
       return state
   }
