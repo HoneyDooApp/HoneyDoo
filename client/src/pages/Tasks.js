@@ -84,14 +84,14 @@ function Tasks() {
       </div>
 
 
-          <div class="card-header">
+          {/* <div class="card-header">
               <h1>{name}'s Household HoneyDoo List</h1>
           </div>
           <div  class="card-body">
               <ul id="taskList" class="list-group">
                 {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name}</li> )}
               </ul>
-          </div>
+          </div> */}
       </form>
   )
 }

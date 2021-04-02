@@ -74,7 +74,7 @@ function router( app ){
       console.log( ` .. got ${tasks.length} tasks for household id(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
-
+//api chore post
    app.post('/api/tasks', authRequired, async function(req, res) {
       const newTask = req.body.task
       const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userData.householdid )

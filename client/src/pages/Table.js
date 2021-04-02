@@ -1,4 +1,6 @@
-import React, { useState, Component } from 'react'
+import React, {useState, Component } from 'react'
+import { useStoreContext } from "../utils/GlobalStore"
+import fetchJSON from "../utils/API"
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,11 +9,12 @@ import "react-datepicker/dist/react-datepicker.css";
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
 
-import "./Chores.css"
+// import "./Chores.css"
 
 
 
 function Table() {
+    const [{ alert, tasks, name }, dispatch ]= useStoreContext()
     const [startDate, setStartDate] = useState(new Date());
     const [actionOps, setActionOps] = useState([
         { name: "Wash" },
@@ -20,6 +23,10 @@ function Table() {
         { name: "Wipe" },
         { name: "Vacuum" }])
 
+    // const inputName = useRef()
+    // const [workerBeeOps, setworkerBeeOps] = useState([{name:inputName.current.value.trim()}])
+    const [workerBeeOps, setworkerBeeOps] = useState([
+        { name: "" }])
 
     const [areaOps, setAreaOps] = useState([
         { name: "Kitchen" },
@@ -72,6 +79,10 @@ function Table() {
         { name: "Incomplete" },
         { name:  "Complete" }])    
 
+    const [ratingOps, setRatingOps] = useState([
+            { name: "Peachy" },
+            { name:  "Pits" }])    
+
     const [choreName, setChoreName] = useState('')
     let [form, setForm] = useState({})
     const handleChange = (e) => {
@@ -83,15 +94,29 @@ function Table() {
         // setChoreName(choreName=>"")
         // setChoreName(choreName=>choreName+option)
         // setChoreName(choreName=>"")
-
+        console.log('FORM',form)
     }
 
-    const submitHandler=()=>{
+    const submitHandler=async()=>{
         //send choreName and form to the database
         console.log({form})
         console.log ({choreName})
         console.log({startDate})
+        //newTask is going to be an object with your consoel.logs up there 
+        //send that in the post {form:,chore:chorename}
+        const newTask= choreName
+        // const newTask= form
+        const { status, tasks: newTasks, message }= await fetchJSON( '/api/tasks', 'post', { task: newTask } )
+    if( !status ){
+      dispatch({ type: "ALERT_MESSAGE", message })
+      return
     }
+
+    // dispatch({ type: "UPDATE_TASKS", tasks: newTasks, message })
+  }
+
+        
+    
 
     const editHandler=()=>{
         // send choreName and form to the database
@@ -114,12 +139,22 @@ function Table() {
     return (
         <form className="form1 left">
             <h1>Create or Edit a Chore</h1>
-            <div className="left form">
+            {/* <div className="left form"> */}
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
                 <label for="choreName">choreName </label>
                 <input value={choreName} type="text" />
-                <label for="workerBee">Assigned to </label>
-                <input type="text" />
-                <br></br>
+
+                <label for="workerBee" >Assigned to </label>
+                {/* <input value={workerBee} type="text" />  */}
+                <select onClick={e => handleChange(e)} class="form-select" id="workerBee" aria-label="Default select example" >
+                    {workerBeeOps.map(workerBee => {
+                        return (<option value={workerBee.name}>{workerBee.name}</option>)
+                    })}
+                </select>
+                </div>
+            
+                <br></br> 
 
                 <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
@@ -217,13 +252,26 @@ function Table() {
                 </div>
                 </div>
 
-
+                <div class="row">
+                <div class="col-12 col-md-6 col-lg-3">
                 <label>Status</label>
                 <select onClick={e => handleChange(e)} class="form-select" id="status" aria-label="Default select example">
                     {statusOps.map(status => {
                         return (<option value={status.name}>{status.name}</option>)
                     })}
                 </select>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                <label>Rating</label>
+                <select onClick={e => handleChange(e)} class="form-select" id="rating" aria-label="Default select example">
+                    {ratingOps.map(rating => {
+                        return (<option value={rating.name}>{rating.name}</option>)
+                    })}
+                </select>
+                </div>
+                </div>
+
             </div>
             <br></br>
             <div className="form2">

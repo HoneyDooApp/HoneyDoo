@@ -69,6 +69,10 @@
    #footer {
        font-weight: bolder;
        font-size: 20px;
+       position:sticky;
+       left: 0;
+    bottom: 0;
+    width: 100%;
    }
 
    #area, #action, #subject, #purpose, #effort, #age, #help, #consequence, #deadline, #recurring, #status {

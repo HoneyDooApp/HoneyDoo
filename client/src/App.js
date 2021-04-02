@@ -10,7 +10,7 @@ import Tasks from "./pages/Tasks"
 import Register from "./pages/Register"
 import Login from "./pages/Login"
 import Logout from "./pages/Logout"
-import Chore from "./pages/Chores"
+// import Chore from "./pages/Chores"
 import Table from './pages/Table'
 
 import "./index.css"
