@@ -81,7 +81,13 @@ function router( app ){
       console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
-
+   app.post('/api/chores', authRequired, async function(req, res) {
+      const newTask = req.body.task
+      console.log(newTask)
+      const { status, tasks, message }= await orm.choreCreate( newTask, req.sessionData.userData.householdid )
+      console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
+      res.send({ status, tasks, message })
+   })
    ///
    app.delete('/api/tasks/:id', authRequired, async function(req, res) {
       const id = req.params.id

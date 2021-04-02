@@ -1,4 +1,4 @@
-import React, {useState, Component } from 'react'
+import React, {useState, useRef } from 'react'
 import { useStoreContext } from "../utils/GlobalStore"
 import fetchJSON from "../utils/API"
 import DatePicker from "react-datepicker";
@@ -15,20 +15,23 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Table() {
     const [{ alert, tasks, name }, dispatch ]= useStoreContext()
-    const [startDate, setStartDate] = useState(new Date());
+    const [startDate, setStartDate] = useState(new Date()); 
     const [actionOps, setActionOps] = useState([
+        {name:"Select"},
         { name: "Wash" },
         { name: "Clean" },
         { name: "Sweep" },
         { name: "Wipe" },
         { name: "Vacuum" }])
 
-    // const inputName = useRef()
+    const inputName = useRef()
+    const inputDescription= useRef()
     // const [workerBeeOps, setworkerBeeOps] = useState([{name:inputName.current.value.trim()}])
     const [workerBeeOps, setworkerBeeOps] = useState([
         { name: "" }])
 
     const [areaOps, setAreaOps] = useState([
+        {name:"Select"},
         { name: "Kitchen" },
         { name: "Bathroom" },
         { name: "Laundry" },
@@ -36,6 +39,7 @@ function Table() {
         { name: "Garage" }])
 
     const [subjectOps, setSubjectOps] = useState([
+        {name:"Select"},
         { name: "Counter" },
         { name: "Floor" },
         { name: "Walls" },
@@ -43,6 +47,7 @@ function Table() {
         { name: "Clothes" }])
 
     const [purposeOps, setPurposeOps] = useState([
+        {name:"Select"},
         {  name: "Hygiene" },
         {  name: "Duty" },
         {  name: "Dependency" },
@@ -60,15 +65,17 @@ function Table() {
         { name: "Over 18" }])
 
     const [consequenceOps, setConsequenceOps] = useState([
+       
         { name: "High" },
         { name: "Medium" },
         { name: "Low" }])
 
     const [helpOps, setHelpOps] = useState([
-        { name: "Yes" },
-        { name: "No" }])    
+        { name: "No" },
+        { name: "Yes" }])    
 
     const [recurringOps, setRecurringOps] = useState([
+        {name:"Select"},
         {  name: "Daily" },
         {  name: "Weekly" },
         {  name: "Monthly" },
@@ -80,8 +87,13 @@ function Table() {
         { name:  "Complete" }])    
 
     const [ratingOps, setRatingOps] = useState([
+            {name:"Unrated"},
             { name: "Peachy" },
             { name:  "Pits" }])    
+
+    const [descriptionOps, setDescriptionOps] = useState([
+        { name: "Please enter a description" },
+        { name: "" }])  
 
     const [choreName, setChoreName] = useState('')
     let [form, setForm] = useState({})
@@ -99,14 +111,20 @@ function Table() {
 
     const submitHandler=async()=>{
         //send choreName and form to the database
-        console.log({form})
-        console.log ({choreName})
-        console.log({startDate})
+        
         //newTask is going to be an object with your consoel.logs up there 
         //send that in the post {form:,chore:chorename}
-        const newTask= choreName
-        // const newTask= form
-        const { status, tasks: newTasks, message }= await fetchJSON( '/api/tasks', 'post', { task: newTask } )
+        const newTask={
+            chore:choreName,
+            bee:inputName.current.value.trim(),
+            date:startDate,
+            description:inputDescription.current.value.trim(),
+            formInfo:form
+
+
+        }
+  console.log(newTask)
+        const { status, tasks: newTasks, message }= await fetchJSON( '/api/chores', 'post', { task: newTask } )
     if( !status ){
       dispatch({ type: "ALERT_MESSAGE", message })
       return
@@ -142,19 +160,21 @@ function Table() {
             {/* <div className="left form"> */}
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
-                <label for="choreName">choreName </label>
-                <input value={choreName} type="text" />
+                <label for="choreName">Chore Name </label>
+                <input value={choreName} type="plain-text" /> 
+                </div>
 
-                <label for="workerBee" >Assigned to </label>
-                {/* <input value={workerBee} type="text" />  */}
-                <select onClick={e => handleChange(e)} class="form-select" id="workerBee" aria-label="Default select example" >
+                <div class="col-12 col-md-6 col-lg-3">
+                <label for="workerBee" id ="workerBee" >Assigned to </label>
+                <input ref={inputName} type="text" id="name" class="form-control" />
+                {/* <select onClick={e => handleChange(e)} class="form-select" id="workerBee" aria-label="Default select example" >
                     {workerBeeOps.map(workerBee => {
                         return (<option value={workerBee.name}>{workerBee.name}</option>)
                     })}
-                </select>
+                </select> */}
                 </div>
             
-                <br></br> 
+            
 
                 <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
@@ -225,11 +245,16 @@ function Table() {
                     })}
                 </select>
                 </div>
-
                 <div class="col-12 col-md-6 col-lg-3">
-                <label for="deadline">Deadline </label>
-                <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                <label>Status</label>
+                <select onClick={e => handleChange(e)} class="form-select" id="status" aria-label="Default select example">
+                    {statusOps.map(status => {
+                        return (<option value={status.name}>{status.name}</option>)
+                    })}
+                </select>
                 </div>
+
+                
                 </div>
 
                 <div class="row">
@@ -254,15 +279,6 @@ function Table() {
 
                 <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
-                <label>Status</label>
-                <select onClick={e => handleChange(e)} class="form-select" id="status" aria-label="Default select example">
-                    {statusOps.map(status => {
-                        return (<option value={status.name}>{status.name}</option>)
-                    })}
-                </select>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3">
                 <label>Rating</label>
                 <select onClick={e => handleChange(e)} class="form-select" id="rating" aria-label="Default select example">
                     {ratingOps.map(rating => {
@@ -270,21 +286,25 @@ function Table() {
                     })}
                 </select>
                 </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                <label for="deadline">Deadline </label>
+                <DatePicker selected={startDate} onChange={date => setStartDate(date)} />
+                </div>
                 </div>
 
             </div>
             <br></br>
             <div className="form2">
                 <label for="description">Description:</label>
-                <textarea id="description">
+                <textarea ref={inputDescription}type="text" id="name" class="form-control">
                 </textarea>
             </div>
             <br></br>
-            <div className="form3">
+            {/* <div className="form3">
                 <label for="specialInstructions">Special Instructions and Help Required:</label>
                 <textarea id="specialinstructions">
                 </textarea>
-            </div>
+            </div> */}
             <button onClick={submitHandler} type="button" class="btn btn-primary mx-1">Submit</button>
             <button onClick={editHandler} type="button" class="btn btn-primary mx-1">Edit</button>
             <button onClick={deleteHandler} type="button" class="btn btn-primary mx-1">Delete</button>

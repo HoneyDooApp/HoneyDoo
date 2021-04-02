@@ -26,7 +26,7 @@
 
    .bg-light {
     /* background-color:#80ced6!important; */
-    background-color:rgb(161, 219, 219)!important;
+    background-color:rgb(109, 196, 204)!important;
         /* color: whitesmoke; */
         color:black
     }
@@ -53,7 +53,7 @@
     background-size: cover;
     background-image: url("./Assets/signinImage.jpg");  
     background-position: center;
-    background-clip: content-box; 
+    /* background-clip: content-box;  */
     border: 0px solid white;
     font-weight: bolder;
     height: 400px;
@@ -71,8 +71,7 @@
        font-size: 20px;
        position:sticky;
        left: 0;
-    bottom: 0;
-    width: 100%;
+        width: 100%;
    }
 
    #area, #action, #subject, #purpose, #effort, #age, #help, #consequence, #deadline, #recurring, #status {

@@ -109,6 +109,16 @@ async function taskList(householdid, message = '') {
       tasks
    }
 }
+async function choreList(householdid, message = '') {
+   // refuse duplicate user emails
+   const tasks = await db.chores.find({ householdid }, '-ownerId -__v')
+
+   return {
+      status: true,
+      message,
+      tasks
+   }
+}
 //orm mongoose for chores create send the info
 async function taskSaveAndList(newTask, householdid) {
    // refuse duplicate user emails
@@ -120,6 +130,24 @@ async function taskSaveAndList(newTask, householdid) {
       }
    }
    return taskList(householdid, 'Task saved')
+
+}
+async function choreCreate(newTask, householdid) {
+   // refuse duplicate user emails
+   const result = await db.chores.create({ 
+      chore:newTask.chore,
+      bee:newTask.bee,
+      date:newTask.date,
+      description:newTask.description,
+      formInfo:newTask.formInfo, 
+      householdid })
+   if (!result._id) {
+      return {
+         status: false,
+         message: 'Sorry could not save task!'
+      }
+   }
+   return choreList(householdid, 'Task saved')
 
 }
 // Added function to X button
@@ -140,5 +168,7 @@ module.exports = {
    userSession,
    taskList,
    taskSaveAndList,
-   tasksDel
+   tasksDel,
+   choreCreate,
+   choreList
 };

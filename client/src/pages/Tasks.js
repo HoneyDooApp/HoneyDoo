@@ -75,12 +75,12 @@ function Tasks() {
               </ul>
           </div>
 
-          <div class="card-footer">
+          {/* <div class="card-footer">
             <div class="input-group">
               <input ref={inputRef} type="text" class="form-control" placeholder='Remove Task...' /> 
               <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
             </div>
-          </div>
+          </div> */}
       </div>
 
 

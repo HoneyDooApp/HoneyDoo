@@ -29,8 +29,9 @@ function App() {
             <Route exact path="/register/new" component={NewUser} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/logout" component={Logout} />
-            <Footer />
+            {/* <Footer /> */}
         </div>
+        <Footer />
       </BrowserRouter>
     </StoreProvider>
   )
