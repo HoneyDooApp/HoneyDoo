@@ -26,7 +26,7 @@
 
    .bg-light {
     /* background-color:#80ced6!important; */
-    background-color:rgb(109, 196, 204)!important;
+    background-color:rgb(170 209 226)!important;
         /* color: whitesmoke; */
         color:black
     }
@@ -66,13 +66,34 @@
    }
  
 
-   #footer {
+   /* #footer {
        font-weight: bolder;
        font-size: 20px;
        position:sticky;
+       text-align: center;
        left: 0;
         width: 100%;
-   }
+   } */
+
+   .footer span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px;
+    background: rgb(170 209 226);
+  }
+  .footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: rgb(170 209 226);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bolder;
+  }
 
    #area, #action, #subject, #purpose, #effort, #age, #help, #consequence, #deadline, #recurring, #status {
        width:  300px;
@@ -92,3 +113,11 @@
        margin-bottom: 40px;
        
    } 
+  /* .btn {
+     font-weight: 100;
+  } */
+
+  p {
+      font-size: 20px;
+      font-family:Arial, Helvetica, sans-serif
+  }

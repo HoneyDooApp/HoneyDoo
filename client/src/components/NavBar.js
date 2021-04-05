@@ -65,7 +65,10 @@ function NavBar() {
               </li>  
               <li className="nav-item">
                 <NavLink to="/Chore" className="nav-link" activeClassName="active">Chore</NavLink>
-              </li>             
+              </li>      
+              <li className="nav-item">
+                <NavLink to="/About" className="nav-link">About</NavLink>
+              </li>        
               <li className="nav-item">
                 <NavLink to="/logout" className="nav-link">Logout</NavLink>
               </li> 

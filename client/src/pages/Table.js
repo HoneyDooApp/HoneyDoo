@@ -26,9 +26,13 @@ function Table() {
 
     const inputName = useRef()
     const inputDescription= useRef()
-    // const [workerBeeOps, setworkerBeeOps] = useState([{name:inputName.current.value.trim()}])
     const [workerBeeOps, setworkerBeeOps] = useState([
         { name: "" }])
+
+        const peach = useRef()
+        // const inputDescription= useRef()
+        const [peachPointsOps, setpeachPointsOps] = useState([
+            { name: "" }])
 
     const [areaOps, setAreaOps] = useState([
         {name:"Select"},
@@ -117,6 +121,7 @@ function Table() {
         const newTask={
             chore:choreName,
             bee:inputName.current.value.trim(),
+            points:peach.current.value.trim(),
             date:startDate,
             description:inputDescription.current.value.trim(),
             formInfo:form
@@ -154,10 +159,11 @@ function Table() {
         // console.log({form})
         // console.log ({choreName})
     }
+    // const peachPoints = ()
+    
     return (
         <form className="form1 left">
             <h1>Create or Edit a Chore</h1>
-            {/* <div className="left form"> */}
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-3">
                 <label for="choreName">Chore Name </label>
@@ -167,11 +173,6 @@ function Table() {
                 <div class="col-12 col-md-6 col-lg-3">
                 <label for="workerBee" id ="workerBee" >Assigned to </label>
                 <input ref={inputName} type="text" id="name" class="form-control" />
-                {/* <select onClick={e => handleChange(e)} class="form-select" id="workerBee" aria-label="Default select example" >
-                    {workerBeeOps.map(workerBee => {
-                        return (<option value={workerBee.name}>{workerBee.name}</option>)
-                    })}
-                </select> */}
                 </div>
             
             
@@ -292,6 +293,11 @@ function Table() {
                 </div>
                 </div>
 
+                <div class="col-12 col-md-6 col-lg-3">
+                <label for="peachPoints" class ="peachPoints" >Peach Points </label>
+                <input ref={peach} type="number" id="peachPoints" class="form-control" />
+                </div>
+
             </div>
             <br></br>
             <div className="form2">
@@ -300,11 +306,6 @@ function Table() {
                 </textarea>
             </div>
             <br></br>
-            {/* <div className="form3">
-                <label for="specialInstructions">Special Instructions and Help Required:</label>
-                <textarea id="specialinstructions">
-                </textarea>
-            </div> */}
             <button onClick={submitHandler} type="button" class="btn btn-primary mx-1">Submit</button>
             <button onClick={editHandler} type="button" class="btn btn-primary mx-1">Edit</button>
             <button onClick={deleteHandler} type="button" class="btn btn-primary mx-1">Delete</button>

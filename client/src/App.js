@@ -12,6 +12,7 @@ import Login from "./pages/Login"
 import Logout from "./pages/Logout"
 // import Chore from "./pages/Chores"
 import Table from './pages/Table'
+import About from './pages/About'
 
 import "./index.css"
 import NewUser from'./pages/newUser'
@@ -28,7 +29,9 @@ function App() {
             <Route exact path="/register" component={Register} />
             <Route exact path="/register/new" component={NewUser} />
             <Route exact path="/login" component={Login} />
+            <Route exact path="/About" component={About} /> 
             <Route exact path="/logout" component={Logout} />
+
             {/* <Footer /> */}
         </div>
         <Footer />
