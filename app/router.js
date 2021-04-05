@@ -67,21 +67,34 @@ function router( app ){
       console.log( ` .. removed session ${req.header.session}`)
       res.send({ status: true, message: 'Logout complete' })
    })
-
+//api get requests
+   app.get('/api/chores', authRequired, async function(req, res) {
+      console.log('Session Data',req.sessionData)
+      const { status, chore, message }= await orm.choreList( req.sessionData.userData.householdid )
+      console.log( ` .. got ${chore.length} tasks for household id(${req.sessionData.userData.householdid})` )
+      res.send({ status, chore, message })
+   })
+   
    app.get('/api/tasks', authRequired, async function(req, res) {
       console.log('Session Data',req.sessionData)
       const { status, tasks, message }= await orm.taskList( req.sessionData.userData.householdid )
       console.log( ` .. got ${tasks.length} tasks for household id(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
-
+//api chore post
    app.post('/api/tasks', authRequired, async function(req, res) {
       const newTask = req.body.task
       const { status, tasks, message }= await orm.taskSaveAndList( newTask, req.sessionData.userData.householdid )
       console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
       res.send({ status, tasks, message })
    })
-
+   app.post('/api/chores', authRequired, async function(req, res) {
+      const newTask = req.body.task
+      console.log(newTask)
+      const { status, tasks, message }= await orm.choreCreate( newTask, req.sessionData.userData.householdid )
+      console.log( ` .. updated with '${newTask}' for householdID(${req.sessionData.userData.householdid})` )
+      res.send({ status, tasks, message })
+   })
    ///
    app.delete('/api/tasks/:id', authRequired, async function(req, res) {
       const id = req.params.id

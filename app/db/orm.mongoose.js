@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const mongodb = require("mongodb")
 
 mongoose.connect(process.env.MONGODB_URI,
    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -108,7 +109,17 @@ async function taskList(householdid, message = '') {
       tasks
    }
 }
+async function choreList(householdid, message = '') {
+   // refuse duplicate user emails
+   const tasks = await db.chores.find({ householdid }, '-ownerId -__v')
 
+   return {
+      status: true,
+      message,
+      tasks
+   }
+}
+//orm mongoose for chores create send the info
 async function taskSaveAndList(newTask, householdid) {
    // refuse duplicate user emails
    const result = await db.tasks.create({ name: newTask, householdid })
@@ -118,7 +129,26 @@ async function taskSaveAndList(newTask, householdid) {
          message: 'Sorry could not save task!'
       }
    }
+   return taskList(householdid, 'Task saved')
 
+}
+async function choreCreate(newTask, householdid) {
+   // refuse duplicate user emails
+   const result = await db.chores.create({ 
+      chore:newTask.chore,
+      bee:newTask.bee,
+      peachpoints: newTask.points,
+      date:newTask.date,
+      description:newTask.description,
+      formInfo:newTask.formInfo, 
+      householdid })
+   if (!result._id) {
+      return {
+         status: false,
+         message: 'Sorry could not save task!'
+      }
+   }
+   return choreList(householdid, 'Task saved')
 
 }
 // Added function to X button
@@ -130,7 +160,7 @@ async function tasksDel( id ) {
          message: 'Sorry could not remove task!'
       }
    }
-   return taskList(householdid, 'Task saved')
+  
 }
 
 module.exports = {
@@ -139,5 +169,7 @@ module.exports = {
    userSession,
    taskList,
    taskSaveAndList,
-   tasksDel
+   tasksDel,
+   choreCreate,
+   choreList
 };
