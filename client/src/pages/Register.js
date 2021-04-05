@@ -36,12 +36,12 @@ function Register(){
             householdName: inputHName.current.value.trim(),
             headFamily: hofName.current.value.trim(),
             role: inputRole.current.value.trim(),
-            name2: inputName2.current.value.trim(),
-            email2: inputEmail2.current.value.trim(),
-            password2: inputPassword2.current.value.trim(),
-            role2: inputRole2.current.value.trim()
+            // name2: inputName2.current.value.trim(),
+            // email2: inputEmail2.current.value.trim(),
+            // password2: inputPassword2.current.value.trim(),
+            // role2: inputRole2.current.value.trim()
         }
-       console.log(regData)
+       console.log('RegData',regData)
 
         // just to make sure the browser validation worked, we double-check
         if( regData.name.length<2 || regData.email.indexOf('@')<2 || regData.password.length<5 ){
@@ -121,7 +121,7 @@ function Register(){
                             Please enter your role
                         </div>
                     </div>
-                    <div class="mb-3">
+                    {/* <div class="mb-3">
                         <label for="name">First Name</label>
                         <input ref={inputName2} type="text" id="name" class="form-control" required />
                         <div class="invalid-feedback">
@@ -163,7 +163,7 @@ function Register(){
                         <div class="invalid-feedback">
                             Please enter your role
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div class="card-footer">
                     <button onClick={registerUser} class="btn btn-primary mx-1" >Register</button>

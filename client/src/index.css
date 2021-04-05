@@ -2,7 +2,7 @@
 /* NabBar */
 .card {
     background-size: cover;
-      background-image: url("./Assets/signinImage.jpg");  
+      /* background-image: url("./Assets/signinImage.jpg");   */
     /* background-position: center;
     background-clip: content-box; */
     border: 0px solid white;
@@ -51,10 +51,10 @@
 
    .card-body {
     background-size: cover;
-    background-image: url("./Assets/signinImage.jpg");  
+    /* background-image: url("./Assets/signinImage.jpg");   */
     background-position: center;
     /* background-clip: content-box;  */
-    border: 0px solid white;
+    border: 2px solid white;
     font-weight: bolder;
     height: 400px;
     width: 1400px;

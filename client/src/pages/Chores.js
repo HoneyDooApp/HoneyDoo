@@ -1,14 +1,16 @@
 import React, { useEffect, useRef } from "react"
 import { useStoreContext } from "../utils/GlobalStore"
 import fetchJSON from "../utils/API"
+import { MDBTable, MDBTableBody, MDBTableHead } from 'mdbreact';
 
 function Tasks() {
-  const [{ alert, tasks, name }, dispatch ]= useStoreContext()
+  const [{ alert, chores, name }, dispatch ]= useStoreContext()
 
   const inputRef = useRef()
 
   async function tasksLoad(){
-    const { status, tasks: newTasks, message }= await fetchJSON( '/api/tasks' )
+    const { status, chores:chores, message }= await fetchJSON( '/api/chores' )
+    console.log(chores)
     if( !status ){
       // for simplicity, we simply log user out if an error (ex. forbidden for invalid session)
       dispatch({ type: "USER_LOGOUT", message })
@@ -16,24 +18,10 @@ function Tasks() {
     }
 
     // update tasks list
-    console.log( `.. GET /api/tasks, tasks:`, newTasks )
-    dispatch({ type: "UPDATE_TASKS", tasks: newTasks })
+    console.log( `.. GET /api/tasks, tasks:`, chores )
+    dispatch({ type: "UPDATE_CHORES", chores: chores })
   }
-  async function tasksSave( e ){
-    e.preventDefault()
-    
-    const newTask = inputRef.current.value
-    // clear input
-    inputRef.current.value = ''
-    
-    const { status, tasks: newTasks, message }= await fetchJSON( '/api/tasks', 'post', { task: newTask } )
-    if( !status ){
-      dispatch({ type: "ALERT_MESSAGE", message })
-      return
-    }
 
-    dispatch({ type: "UPDATE_TASKS", tasks: newTasks, message })
-  }
 
   //ADDED THIS BUTTON
   async function tasksDel( e ){
@@ -51,7 +39,7 @@ function Tasks() {
     //the accurate call from the database determines the mapped list items
     //which in turn show the correct items
     e.target.parentElement.remove()
-    const { status, message }= await fetchJSON( `/api/tasks/${id}`, 'delete' )
+    const { status, message }= await fetchJSON( `/api/chores/${id}`, 'delete' )
     
     if( !status ){
       // dispatch({ type: "ALERT_MESSAGE", message })
@@ -75,19 +63,50 @@ function Tasks() {
               <h1>{name}'s HoneyDoo List</h1>
           </div>
           <div  class="card-body">
+        
+          <MDBTable>
+      <MDBTableHead>
+        <tr  >
+          <th>CHORE</th>
+          <th>WORKER BEE</th>
+          <th>DATE</th>
+          <th>PURPOSE</th>
+          <th>PEACH POINTS</th>
+          <th>DESCRIPTION</th>
+        </tr>
+      </MDBTableHead>
+      {chores && chores.map( chore=>
+      <MDBTableBody>
+        <tr>
+          <td>{chore.chore}</td>
+          <td>{chore.bee}</td>
+          <td>{chore.date}</td>
+          <td>{chore.purpose}</td>
+          <td>{chore.peachpoints}</td>
+          <td>{chore.description}</td>
+        </tr>
+      </MDBTableBody>
+      )}
+    </MDBTable>
+  
+
+
+
+              {/* <th>TAble head</th>
               <ul id="taskList" class="list-group">
-              {tasks && tasks.map( task=><li key={task._id} class="list-group-item">{task.name} 
-               <button onClick={tasksDel} disabled={alert.length>0} class="btn btn-primary float-end " id={task._id}>x</button></li> )}
-              </ul>
+              {chores && chores.map( chore=><li key={chore._id} class="list-group-item">{chore.chore} | {chore.bee} 
+               {/* <button onClick={tasksDel} disabled={alert.length>0} class="btn btn-primary float-end " id={task._id}>x</button> */}
+               {/* </li> )} */}
+              {/* </ul> */} 
           </div>
 
-          <div class="card-footer">
+          {/* <div class="card-footer">
             <div class="input-group">
               <input ref={inputRef} type="text" class="form-control" placeholder='Remove Task...' /> 
               <button onClick={tasksSave} disabled={alert.length>0} class="btn btn-primary">Save</button>
               
             </div>
-          </div>
+          </div> */}
       </div>
 
 
