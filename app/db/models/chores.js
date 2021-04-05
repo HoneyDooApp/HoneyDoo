@@ -6,7 +6,13 @@ const chore = new Schema({
     bee:{type:String},
     date:{type:Date},
     description:{type:String},
-  
+    purpose:{
+      type:String,
+      default: 'Just Because'
+   },
+    effort:{type:String},
+    status:{type:String},
+    peachpoints:{type:String},
   
     householdid: Schema.Types.ObjectId
  }, {

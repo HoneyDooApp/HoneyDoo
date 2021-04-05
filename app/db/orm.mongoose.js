@@ -137,6 +137,7 @@ async function choreCreate(newTask, householdid) {
    const result = await db.chores.create({ 
       chore:newTask.chore,
       bee:newTask.bee,
+      peachpoints: newTask.points,
       date:newTask.date,
       description:newTask.description,
       formInfo:newTask.formInfo, 

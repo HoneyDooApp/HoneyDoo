@@ -41,17 +41,28 @@ function Tasks() {
     e.preventDefault()
     const id = e.target.id
     console.log ('deleteid',id)  
-    const newTask = inputRef.current.value
+    // const newTask = inputRef.current.value
     // clear input
-    inputRef.current.value = ''
-
+    // inputRef.current.value = ''
+    console.log (e.target.parentElement)
+    // e.parentNode
+    //alternative solution to the deletion of posts
+    //Without having to reestablish our state we are pretending
+    //that the information is gone(front-end wise) and on refresh
+    //the accurate call from the database determines the mapped list items
+    //which in turn show the correct items
+    e.target.parentElement.remove()
     const { status, message }= await fetchJSON( `/api/tasks/${id}`, 'delete' )
+    
     if( !status ){
-      dispatch({ type: "ALERT_MESSAGE", message })
+      // dispatch({ type: "ALERT_MESSAGE", message })
       return
     }
-
-    dispatch({ type: "REMOVE_POST", id , message })
+    // dispatch({ type: "REMOVE_POST", id , message })
+    //Deletion works perfectly fine, just need to add an update
+    //to our state after the delete happens by GET-ing the updated
+    //Data from our database. Alternate
+    //const { tasks: newTasks}= await fetchJSON( '/api/tasks' )
   }
 //
 

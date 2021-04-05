@@ -79,7 +79,7 @@ function Table() {
         { name: "Yes" }])    
 
     const [recurringOps, setRecurringOps] = useState([
-        {name:"Select"},
+        {name:"Once"},
         {  name: "Daily" },
         {  name: "Weekly" },
         {  name: "Monthly" },

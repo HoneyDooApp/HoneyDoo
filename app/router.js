@@ -67,7 +67,14 @@ function router( app ){
       console.log( ` .. removed session ${req.header.session}`)
       res.send({ status: true, message: 'Logout complete' })
    })
-
+//api get requests
+   app.get('/api/chores', authRequired, async function(req, res) {
+      console.log('Session Data',req.sessionData)
+      const { status, chore, message }= await orm.choreList( req.sessionData.userData.householdid )
+      console.log( ` .. got ${chore.length} tasks for household id(${req.sessionData.userData.householdid})` )
+      res.send({ status, chore, message })
+   })
+   
    app.get('/api/tasks', authRequired, async function(req, res) {
       console.log('Session Data',req.sessionData)
       const { status, tasks, message }= await orm.taskList( req.sessionData.userData.householdid )
