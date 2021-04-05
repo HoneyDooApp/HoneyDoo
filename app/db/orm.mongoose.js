@@ -156,12 +156,12 @@ async function taskList(householdid, message = '') {
 }
 async function choreList(householdid, message = '') {
    // refuse duplicate user emails
-   const tasks = await db.chores.find({ householdid }, '-ownerId -__v')
+   const chores = await db.chores.find({ householdid }, '-ownerId -__v')
 
    return {
       status: true,
       message,
-      tasks
+      chores
    }
 }
 //orm mongoose for chores create send the info

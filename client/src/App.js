@@ -13,6 +13,7 @@ import Logout from "./pages/Logout"
 // import Chore from "./pages/Chores"
 import Table from './pages/Table'
 import About from './pages/About'
+import Chores from './pages/Chores'
 
 import "./index.css"
 import NewUser from'./pages/newUser'
@@ -24,7 +25,7 @@ function App() {
         <div class="container">
             <AlertBar />
             <NavBar />
-            <Route exact path={["/","/tasks"]} component={Tasks} /> 
+            <Route exact path={["/","/tasks"]} component={Chores} /> 
             <Route exact path="/Chore" component={Table} /> 
             <Route exact path="/register" component={Register} />
             <Route exact path="/register/new" component={NewUser} />

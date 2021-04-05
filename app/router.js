@@ -74,9 +74,9 @@ function router(app) {
    //api get requests
    app.get('/api/chores', authRequired, async function (req, res) {
       console.log('Session Data', req.sessionData)
-      const { status, chore, message } = await orm.choreList(req.sessionData.userData.householdid)
-      console.log(` .. got ${chore.length} tasks for household id(${req.sessionData.userData.householdid})`)
-      res.send({ status, chore, message })
+      const { status, chores, message } = await orm.choreList(req.sessionData.userData.householdid)
+      console.log(` .. got ${chores} chore for household id(${req.sessionData.userData.householdid})`)
+      res.send({ status, chores, message })
    })
 
    app.get('/api/tasks', authRequired, async function (req, res) {
