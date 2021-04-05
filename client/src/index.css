@@ -6,15 +6,18 @@
     /* background-position: center;
     background-clip: content-box; */
     border: 0px solid white;
-    height: 400px;
+    height: 610px;
     width: 1400px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     position: relative;
     margin: 0 auto;
     margin-top: 30px;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
+    padding: 10px; 
   }
-
+.card-register{
+    background-image: url("./Assets/signinImage.jpg");
+}
  h1 {
      font-style: italic;
  }
@@ -49,21 +52,7 @@
    
    /* tasks */
 
-   .card-body {
-    background-size: cover;
-    /* background-image: url("./Assets/signinImage.jpg");   */
-    background-position: center;
-    /* background-clip: content-box;  */
-    border: 2px solid white;
-    font-weight: bolder;
-    height: 400px;
-    width: 1400px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    position: relative;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 10px; 
-   }
+   
  
 
    /* #footer {

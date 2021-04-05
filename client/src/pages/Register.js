@@ -77,7 +77,7 @@ function Register(){
                 <div class="card-header">
                     <h1>User Registration</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-register">
                     <div class="mb-3">
                         <label for="name">First Name</label>
                         <input ref={inputName} type="text" id="name" class="form-control" required />
@@ -108,7 +108,7 @@ function Register(){
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="text">Head of Family</label>
+                        <label for="text">Manager of Members [Mom]</label>
                         <input ref={hofName} id="hofName" type="text" class="form-control" required />
                         <div class="invalid-feedback">
                             Please enter your Head of Family name
@@ -121,49 +121,7 @@ function Register(){
                             Please enter your role
                         </div>
                     </div>
-                    {/* <div class="mb-3">
-                        <label for="name">First Name</label>
-                        <input ref={inputName2} type="text" id="name" class="form-control" required />
-                        <div class="invalid-feedback">
-                            Please enter a name
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email">Email Address</label>
-                        <input ref={inputEmail2} id="email" type="email" class="form-control" required />
-                        <div class="invalid-feedback">
-                            Please enter an email
-                        </div>
-
-                    </div>
-                    <div class="mb-3">
-                        <label for="userPassword">Password</label>
-                        <input ref={inputPassword2} id="userPassword" type="password" class="form-control"  pattern=".{8,}" required />
-                        <div class="invalid-feedback">
-                            Please enter a password (8 chars min)
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="text">Household Name</label>
-                        <input ref={inputHName2} id="householdName" type="text" class="form-control" required />
-                        <div class="invalid-feedback">
-                            Please enter your Household Name
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="text">Head of Family</label>
-                        <input ref={hofName2} id="hofName" type="text" class="form-control" required />
-                        <div class="invalid-feedback">
-                            Please enter your Head of Family name
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="text">Role</label>
-                        <input ref={inputRole2} id="rol" type="text" class="form-control" required />
-                        <div class="invalid-feedback">
-                            Please enter your role
-                        </div>
-                    </div> */}
+                    
                 </div>
                 <div class="card-footer">
                     <button onClick={registerUser} class="btn btn-primary mx-1" >Register</button>

@@ -69,7 +69,7 @@ function NewUser(){
                 <div class="card-header">
                     <h1>User Registration</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-register">
                     <div class="mb-3">
                         <label for="name">First Name</label>
                         <input ref={inputName} type="text" id="name" class="form-control" required />
@@ -100,7 +100,7 @@ function NewUser(){
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="text">Head of Family</label>
+                        <label for="text">Manager of Members</label>
                         <input ref={hofName} id="hofName" type="text" class="form-control" required />
                         <div class="invalid-feedback">
                             Please enter your Head of Family name
