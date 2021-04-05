@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Redirect, NavLink, useLocation  } from "react-router-dom"
 import { useStoreContext } from "../utils/GlobalStore"
 import fetchJSON from '../utils/API'
+import logo from '../Assets/honeydoologo.png'
+// import "./index.css"
 
 let timeout
 
@@ -46,7 +48,8 @@ function NavBar() {
       { localStorage.session && 
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <NavLink to="/" className="navbar-brand">
-              <img src='https://upload.wikimedia.org/wikipedia/commons/7/79/Mountain_icon_%28Noun_Project%29.svg' alt="" width="64" height="64" />
+              {/* <img src='https://upload.wikimedia.org/wikipedia/commons/7/79/Mountain_icon_%28Noun_Project%29.svg' alt="" width="64" height="64" /> */}
+              <img src={logo} alt="" width="64" height="64"/>
           </NavLink>
           <button onClick={() => setShowMenu(!showMenu)} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
             <span class="navbar-toggler-icon"></span>
@@ -59,7 +62,13 @@ function NavBar() {
               </li> 
               <li className="nav-item">
                 <NavLink to="/register/new" className="nav-link">New User</NavLink>
-              </li>           
+              </li>  
+              <li className="nav-item">
+                <NavLink to="/Chore" className="nav-link" activeClassName="active">Chore</NavLink>
+              </li>      
+              <li className="nav-item">
+                <NavLink to="/About" className="nav-link">About</NavLink>
+              </li>        
               <li className="nav-item">
                 <NavLink to="/logout" className="nav-link">Logout</NavLink>
               </li> 

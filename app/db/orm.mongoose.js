@@ -7,11 +7,11 @@ mongoose.connect(process.env.MONGODB_URI,
 
 // include mongoose models (it will include each file in the models directory)
 const db = require('./models')
-async function newRegister(userData){
+async function newRegister(userData) {
    //userData household name haz un call a household collection y busca el name para que te regrese el id y con ese id
-   let household = await db.household.findOne({name:userData.householdName})
-   console.log('Household name:',userData.householdName)
-   console.log('household entero:',household)
+   let household = await db.household.findOne({ name: userData.householdName })
+   console.log('Household name:', userData.householdName)
+   console.log('household entero:', household)
 
    if (!userData.name || !userData.email || !userData.password) {
       console.log('[registerUser] invalid userData! ', userData)
@@ -63,11 +63,11 @@ async function userRegister(userData) {
    if (duplicateUser && duplicateUser._id) {
       return { status: false, message: 'Duplicate email, try another or login' }
    }
-   let household = await db.household.findOne({name:userData.householdName})
-   console.log('Household name:',userData.householdName)
-   console.log('household entero:',household)
+   let household = await db.household.findOne({ name: userData.householdName })
+   console.log('Household name:', userData.householdName)
+   console.log('household entero:', household)
    household = await db.household.create({ name: userData.householdName })
-   console.log('Household:',household)
+   console.log('Household:', household)
 
    // hash the password (salt=10)
    const passwordHash = await bcrypt.hash(userData.password, 10)
@@ -87,7 +87,7 @@ async function userRegister(userData) {
    // }
    const saveUser = await db.users.create(saveData)
    // const saveUser2 = await db.users.create(saveData2)
-   console.log('SAVE User',saveUser)
+   console.log('SAVE User', saveUser)
    // console.log(saveUser2)
    if (!saveUser._id) {
       return { status: false, message: `Sorry failed creating entry for ${saveUser.name}: ` }
@@ -154,7 +154,17 @@ async function taskList(householdid, message = '') {
       tasks
    }
 }
+async function choreList(householdid, message = '') {
+   // refuse duplicate user emails
+   const tasks = await db.chores.find({ householdid }, '-ownerId -__v')
 
+   return {
+      status: true,
+      message,
+      tasks
+   }
+}
+//orm mongoose for chores create send the info
 async function taskSaveAndList(newTask, householdid) {
    // refuse duplicate user emails
    const result = await db.tasks.create({ name: newTask, householdid })
@@ -167,10 +177,30 @@ async function taskSaveAndList(newTask, householdid) {
    return taskList(householdid, 'Task saved')
 
 }
+async function choreCreate(newTask, householdid) {
+   // refuse duplicate user emails
+   const result = await db.chores.create({
+      chore: newTask.chore,
+      bee: newTask.bee,
+      peachpoints: newTask.points,
+      date: newTask.date,
+      description: newTask.description,
+      formInfo: newTask.formInfo,
+      householdid
+   })
+   if (!result._id) {
+      return {
+         status: false,
+         message: 'Sorry could not save task!'
+      }
+   }
+   return choreList(householdid, 'Task saved')
+
+}
 // Added function to X button
-async function tasksDel( id ) {
-   const result = await db.tasks.deleteOne({_id: new mongodb.ObjectID(`${id}`)})
-   if( !result._id ){
+async function tasksDel(id) {
+   const result = await db.tasks.deleteOne({ _id: new mongodb.ObjectID(`${id}`) })
+   if (!result._id) {
       return {
          status: false,
          message: 'Sorry could not remove task!'
@@ -185,6 +215,7 @@ module.exports = {
    userSession,
    taskList,
    taskSaveAndList,
-   newRegister,
-   tasksDel
+   tasksDel,
+   choreCreate,
+   choreList
 };

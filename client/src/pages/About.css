@@ -1,0 +1,34 @@
+
+
+.About-body{
+    background-size: cover;
+      background-image: url("../Assets/homeclean.jpg");
+}
+
+/* img {
+    opacity: 0.5;
+  } */
+
+.bg-about {
+    background-color: rgb(50 190 247)!important;
+        color:black
+    }
+    
+p {
+padding-left: 150px;
+text-align: right;
+}
+
+.aboutli {
+    text-align: left;
+    margin-left: 450px; 
+}
+
+.footer span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3px;
+    background: rgb(50 190 247);
+  }
