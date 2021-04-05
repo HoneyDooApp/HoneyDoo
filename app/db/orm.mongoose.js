@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
+const mongodb = require('mongodb')
 
 mongoose.connect(process.env.MONGODB_URI,
    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
@@ -163,7 +164,7 @@ async function taskSaveAndList(newTask, householdid) {
          message: 'Sorry could not save task!'
       }
    }
-
+   return taskList(householdid, 'Task saved')
 
 }
 // Added function to X button
@@ -175,7 +176,7 @@ async function tasksDel( id ) {
          message: 'Sorry could not remove task!'
       }
    }
-   return taskList(householdid, 'Task saved')
+
 }
 
 module.exports = {

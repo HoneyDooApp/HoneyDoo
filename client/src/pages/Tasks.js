@@ -19,10 +19,6 @@ function Tasks() {
     console.log( `.. GET /api/tasks, tasks:`, newTasks )
     dispatch({ type: "UPDATE_TASKS", tasks: newTasks })
   }
-  // async function deleteTask(e){
-  //   e.preventDefault()
-
-  // }
   async function tasksSave( e ){
     e.preventDefault()
     
@@ -44,7 +40,7 @@ function Tasks() {
     e.preventDefault()
     const id = e.target.id
     console.log ('deleteid',id)  
-    const newTask = inputRef.current.value
+    
     // clear input
     inputRef.current.value = ''
 
