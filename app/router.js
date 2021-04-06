@@ -101,7 +101,7 @@ function router(app) {
       res.send({ status, tasks, message })
    })
    ///
-   app.delete('/api/tasks/:id', authRequired, async function (req, res) {
+   app.delete('/api/chores/:id', authRequired, async function (req, res) {
       const id = req.params.id
       console.log('deletingid', id)
       const { status, message } = await orm.tasksDel(id)

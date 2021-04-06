@@ -85,6 +85,7 @@ function Tasks() {
           <td>{chore.peachpoints}</td>
           <td>{chore.description}</td>
         </tr>
+        
       </MDBTableBody>
       )}
     </MDBTable>
