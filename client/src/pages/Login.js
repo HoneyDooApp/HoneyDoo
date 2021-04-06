@@ -64,11 +64,11 @@ function Login(){
         <>
             { authOk ? <Redirect to='/tasks' /> : '' }
             <form ref={refForm}>
-            <div class="card mt-5">
-                <div class="card-header">
+            <div class="card-login mt-5 ">
+                <div class="card-header-login">
                     <h1>Login</h1>
                 </div>
-                <div class="card-body">
+                <div class="card-login">
                     <div class="mb-3">
                         <label for="email" class="form-label">Email address</label>
                         <input ref={inputEmail} id="email" type="email" class="form-control" required />
@@ -84,7 +84,7 @@ function Login(){
                         </div>
                     </div>
                 </div>                    
-                <div class="card-footer">
+                <div class="card-footer-login">
                     <button onClick={userLogin} type="button" class="btn btn-primary mx-1">Login</button>
                     &nbsp; 
                     <input ref={inputRememberMe} id='rememberMe' type="checkbox" />                        

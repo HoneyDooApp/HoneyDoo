@@ -136,35 +136,35 @@ function Table() {
     }
 
     // dispatch({ type: "UPDATE_TASKS", tasks: newTasks, message })
-  }
+//   }
 
         
     
 
-    const editHandler=()=>{
+    // const editHandler=()=>{
         // send choreName and form to the database
         // console.log({form})
         // console.log ({choreName})
-    }
+    // }
 
-    const deleteHandler=()=>{
+    // const deleteHandler=()=>{
         //send choreName and form to the database
         // console.log({form})
         // console.log ({choreName})
     }
 
 
-    const shareHandler=()=>{
+    // const shareHandler=()=>{
         //send choreName and form to the database
         // console.log({form})
         // console.log ({choreName})
-    }
+    // }
     // const peachPoints = ()
     
     return (
         <form className="form1 left">
             <h1>Create or Edit a Chore</h1>
-            <div class="row">
+            <div class="row column-gap">
                 <div class="col-12 col-md-6 col-lg-3">
                 <label for="choreName">Chore Name </label>
                 <input value={choreName} type="plain-text" /> 
