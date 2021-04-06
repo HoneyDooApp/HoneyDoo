@@ -217,5 +217,6 @@ module.exports = {
    taskSaveAndList,
    tasksDel,
    choreCreate,
-   choreList
+   choreList,
+   newRegister
 };
