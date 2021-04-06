@@ -13,7 +13,7 @@ const chore = new Schema({
    effort: { type: String },
    status: { type: String },
    peachpoints: { type: String },
-
+   ownerId: Schema.Types.ObjectId,
    householdid: Schema.Types.ObjectId
 }, {
    timestamps: true /* creates corresponding timestamp fields: createdAt, updatedAt */

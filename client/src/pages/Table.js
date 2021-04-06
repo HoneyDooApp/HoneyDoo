@@ -307,9 +307,9 @@ function Table() {
             </div>
             <br></br>
             <button onClick={submitHandler} type="button" class="btn btn-primary mx-1">Submit</button>
-            <button onClick={editHandler} type="button" class="btn btn-primary mx-1">Edit</button>
+            {/* <button onClick={editHandler} type="button" class="btn btn-primary mx-1">Edit</button>
             <button onClick={deleteHandler} type="button" class="btn btn-primary mx-1">Delete</button>
-            <button onClick={shareHandler} type="button" class="btn btn-primary mx-1">Share</button>
+            <button onClick={shareHandler} type="button" class="btn btn-primary mx-1">Share</button> */}
         </form>
     )
 }

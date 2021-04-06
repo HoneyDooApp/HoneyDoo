@@ -199,7 +199,7 @@ async function choreCreate(newTask, householdid) {
 }
 // Added function to X button
 async function tasksDel(id) {
-   const result = await db.tasks.deleteOne({ _id: new mongodb.ObjectID(`${id}`) })
+   const result = await db.chores.deleteOne({ _id: new mongodb.ObjectID(`${id}`) })
    if (!result._id) {
       return {
          status: false,
