@@ -1,5 +1,5 @@
 
-/* NabBar */
+
 .card {
     background-size: cover;
       /* background-image: url("./Assets/signinImage.jpg");   */
@@ -18,6 +18,13 @@
 .card-register{
     background-image: url("./Assets/signinImage.jpg");
 }
+.card-header-login, .card-login, .card-table {
+    background-image: url("./Assets/householdcleaning1.jpg");
+    background-size: cover;
+    color:black;
+    font-weight: bold;
+    
+}
  h1 {
      font-style: italic;
  }
@@ -28,19 +35,10 @@
    }
 
    .bg-light {
-    /* background-color:#80ced6!important; */
     background-color:rgb(170 209 226)!important;
-        /* color: whitesmoke; */
         color:black
     }
 
-    /* .nav-link {
-        font-weight: bolder;
-    } */
-
-    /* .logo {
-        height: 10px;
-    } */
 
    body {
      
@@ -50,19 +48,9 @@
         background-attachment: fixed;
    }
    
-   /* tasks */
-
-   
- 
-
-   /* #footer {
-       font-weight: bolder;
-       font-size: 20px;
-       position:sticky;
-       text-align: center;
-       left: 0;
-        width: 100%;
-   } */
+   .column-gap {
+       column-gap: 20px;
+   } 
 
    .footer span {
     position: absolute;
@@ -95,17 +83,14 @@
    #description, #specialinstructions {
        min-width: 550px;
 
-       /* padding-bottom: 40px;; */
+   
    }
 
    .form3 {
        margin-bottom: 40px;
        
    } 
-  /* .btn {
-     font-weight: 100;
-  } */
-
+ 
   p {
       font-size: 20px;
       font-family:Arial, Helvetica, sans-serif

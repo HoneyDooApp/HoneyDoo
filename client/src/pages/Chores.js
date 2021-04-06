@@ -58,7 +58,7 @@ function Tasks() {
   
   return (
       <form>
-      <div class="card">
+      <div class="card-table">
           <div class="card-header">
               <h1>{name}'s HoneyDoo List</h1>
           </div>
