@@ -56,7 +56,7 @@ Once this is installed, you will be able to run the app by typing the following 
 <img src="./docs/Screenshot5.png" alt="screenshot"/>
 
 ### Viewing an individual's HoneyDoo list.
-<img src="./docs/Screenshot6.png" alt="screenshot"/>
+<img src="./docs/ScreenShot6.png" alt="screenshot"/>
 
 
 ### TO-DO LIST (Future versions)
