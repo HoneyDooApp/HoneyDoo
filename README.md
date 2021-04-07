@@ -7,25 +7,17 @@ It’s simple, decide who is the manager of members (MOM) in your household and 
 
 ## Foreword
 
-This is a project for the UoT Webstack develloper bootcamp that required the collaboration of four students on a a single project. We were provided with starter code in order to meet our deadline.
+This is a project for the UoT Webstack develloper bootcamp that required the collaboration of four students on a single project. We were provided with starter code in order to meet our deadline.
 
 ## Features
 * Multi-household Processor enables scalability
 * Chore-Name Generator enables standardization
-* React-Date-Picker enable deadline enforcement
+* React-Date-Picker enables deadline enforcement
 
 
 ## Installation
 
 This is assuming that you have node.js installed. If you do not, this link will help you with the installation; https://nodejs.org/en/download/package-manager/
-
-Open a terminal;
-
-npm install mongoose express react-bootstrap body-parser react-datepicker mdtables
-
-Once this is installed, do the following;
-
-npm run start:dev
 
 ### Dependencies
 
@@ -37,11 +29,13 @@ npm run start:dev
 * Mdbtables: https://mdbootstrap.com/docs/react/tables/basic/
 
 
-Do the following from a commandline;
+Afterwards, open a terminal and type the following commands;
 
-1) git clone https://github.com/HoneyDooApp/HoneyDoo.git                
-2) npm mongoose express axios React-date picker body-parser
-4) npm run start:dev
+1) git clone https://github.com/HoneyDooApp/HoneyDoo.git 
+2) cd HoneyDoo (note: this is case sensitive).               
+2) npm install mongoose express react-bootstrap body-parser react-date-picker mdtables
+
+Once this is installed, you will be able to run the app by typing the following command; npm run start:dev
 
 
 ## How do use HoneyDoo:
